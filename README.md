@@ -2,6 +2,15 @@
 
 create react app 
 installed tailwind css
+Header 
+Routing of App
+Login Form 
+Sign Up form 
+Done form valdation using 'yup' library
+Firebase setup
+Deploying our App on production
+Create sign up user account
+
 
 # Features 
 - Login /Sign up (when we are not authenticated )
