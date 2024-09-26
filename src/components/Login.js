@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import Header from './Header'
 import { commonValidation, regex } from '../utils/commonValidation'
 import { commonValidationMsg } from '../utils/commonValidation';
-import {boolean, string} from 'yup'
+import {string} from 'yup'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../utils/firebase';
+import { NetFlix_bg_image } from '../utils/constant';
 const Login = () => {
-
     const [isSignInForm, setIsSignInForm] = useState(true);
     const initialValue = {
         email: "",
         password: ""
 
     }
-    const [name,setName] = useState("")
+    const [name, setName] = useState("")
     const [states, setStates] = useState(initialValue)
     const [error, setError] = useState({});
     const toggleForm = () => {
@@ -24,10 +26,10 @@ const Login = () => {
         let schema = {
             email: string().email().matches(regex.email, commonValidationMsg.email).required("Email is Required"),
             password: string().matches(regex.password, commonValidationMsg.password).required("Password is Required"),
-            name: string().when([],{
-                is: ()=> !isSignInForm,
-                then:(schema)=>schema.matches(regex.name,commonValidationMsg.name).required("Name is Required"),
-                otherwise:(schema)=>schema.notRequired(),
+            name: string().when([], {
+                is: () => !isSignInForm,
+                then: (schema) => schema.matches(regex.name, commonValidationMsg.name).required("Name is Required"),
+                otherwise: (schema) => schema.notRequired(),
             })
 
         }
@@ -35,15 +37,44 @@ const Login = () => {
     }
     const handleOnClick = () => {
         let fieldValue;
-        if(isSignInForm) fieldValue = states
-        else fieldValue = {...states,name:name}
-        console.log({...states,name:name})
+        if (isSignInForm) fieldValue = states
+        else fieldValue = { ...states, name: name }
+        console.log({ ...states, name: name })
         commonValidation({
             field: userSchema(),
             fieldValue: fieldValue
         }).then((res) => {
             if (res === true) {
                 setError({});
+                if (!isSignInForm) {
+                    // Sign-up logic
+                    createUserWithEmailAndPassword(auth, states.email, states.password)
+                        .then((userCredential) => {
+                            const user = userCredential.user;
+                            console.log(user)
+                        })
+                        .catch((err) => {
+                            const errorCode = err.code;
+                            const errorMessage = err.message;
+                            console.log(errorCode, "+", errorMessage)
+                        })
+
+                } else {
+                    // Sign-In logic
+                    signInWithEmailAndPassword(auth, states.email, states.password)
+                        .then((userCredential) => {
+                            // Signed in 
+                            const user = userCredential.user;
+                            // ...
+                           console.log(user)
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            console.log(errorCode, "+", errorMessage)
+                        });
+
+                }
             } else setError({ ...res })
         })
     }
@@ -59,7 +90,7 @@ const Login = () => {
         <div>
             <Header />
             <div className='absolute'>
-                <img src='https://assets.nflxext.com/ffe/siteui/vlv3/85ff76db-39e5-423a-afbc-97d3e74db71b/null/IN-en-20240909-TRIFECTA-perspective_b22117e0-4610-4d57-a695-20f77d241a4a_small.jpg'
+                <img src={NetFlix_bg_image}
                     alt='netflix-background-img' />
 
             </div>
@@ -104,7 +135,7 @@ const Login = () => {
                 >
                     {isSignInForm ? "Sign In" : "Sign Up"}
                 </button>
-                <p> {isSignInForm ? "New to Netflix ? " : "Already registered ? "} <span className='text-yellow-500' onClick={toggleForm}>{isSignInForm ? "Sing Up Now" : "Sign In"}</span></p>
+                <p> {isSignInForm ? "New to Netflix ? " : "Already registered ? "} <span className='text-yellow-500 cursor-pointer' onClick={toggleForm}>{isSignInForm ? "Sign Up Now" : "Sign In"}</span></p>
             </form>
         </div>
     )

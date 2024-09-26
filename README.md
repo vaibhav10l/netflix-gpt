@@ -10,6 +10,9 @@ Done form valdation using 'yup' library
 Firebase setup
 Deploying our App on production
 Create sign up user account
+Implemented Sign-In user
+Setup redux-store with 'userSlice'
+bug fixes -> auth base routing
 
 
 # Features 
