@@ -10,7 +10,6 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user)
-  console.log("user--", user)
   const handleOnClick = () => {
     signOut(auth).then(() => {
       // Sign-out successful.

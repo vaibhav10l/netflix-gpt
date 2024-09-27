@@ -13,6 +13,11 @@ Create sign up user account
 Implemented Sign-In user
 Setup redux-store with 'userSlice'
 bug fixes -> auth base routing
+TMDB id creation and fetch movie data from api,
+created custom Hooks
+Created Back-ground Video component / Title component 
+crerated movie listing components
+
 
 
 # Features 

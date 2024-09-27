@@ -13,11 +13,9 @@ export const  regex = {
 }
 
 export const commonValidation = async ({field,fieldValue})=>{
-    console.log("field",field ,"+++","fieldValue",fieldValue)
     try {
         await object(field).validate(fieldValue, {abortEarly : false})
     }catch(err){
-        console.log("errr---",err)
        return err.inner.reduce((a,error)=>{
             return {
                 ...a,

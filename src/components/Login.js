@@ -39,7 +39,6 @@ const Login = () => {
         let fieldValue;
         if (isSignInForm) fieldValue = states
         else fieldValue = { ...states, name: name }
-        console.log({ ...states, name: name })
         commonValidation({
             field: userSchema(),
             fieldValue: fieldValue
@@ -51,12 +50,10 @@ const Login = () => {
                     createUserWithEmailAndPassword(auth, states.email, states.password)
                         .then((userCredential) => {
                             const user = userCredential.user;
-                            console.log(user)
                         })
                         .catch((err) => {
                             const errorCode = err.code;
                             const errorMessage = err.message;
-                            console.log(errorCode, "+", errorMessage)
                         })
 
                 } else {
@@ -66,12 +63,10 @@ const Login = () => {
                             // Signed in 
                             const user = userCredential.user;
                             // ...
-                           console.log(user)
                         })
                         .catch((error) => {
                             const errorCode = error.code;
                             const errorMessage = error.message;
-                            console.log(errorCode, "+", errorMessage)
                         });
 
                 }
