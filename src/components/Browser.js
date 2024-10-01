@@ -10,7 +10,6 @@ import GPTSearchPage from './GPTSeachPage';
 
 const Browser = () => {
   const isGPTSearch = useSelector((store) => store.gpt.isGPTSearch)
-  console.log("isGPTSearch",isGPTSearch)
   useNowPlayingMovie();
   usePopularMovie();
   useTopRatedMovie();

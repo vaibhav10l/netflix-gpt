@@ -17,6 +17,8 @@ TMDB id creation and fetch movie data from api,
 created custom Hooks
 Created Back-ground Video component / Title component 
 crerated movie listing components
+integerated openai in GptMovieSearch page
+
 
 
 

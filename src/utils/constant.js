@@ -7,7 +7,7 @@ export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjdlNDRjNDI5MzM1NDljMmNkZmNlZjQzZmM5YzdkZiIsIm5iZiI6MTcyNzM2NzIzNS4zNjM1NjgsInN1YiI6IjY2ZjU3MDdmNGY5NDljN2E1YzQ3ZWRjMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZU1-_gDPJWSRXbUAtR902zk2ekNX1-7tCUbtZnFR4nE'
+      Authorization: `Bearer ${process.env.REACT_APP_TMDB_TOKEN}` 
     }
   };
 export const  IMG_URL ="https://image.tmdb.org/t/p/w500"
@@ -25,3 +25,5 @@ export const SUPPORTED_LANG = [
     value:"German"
   }
 ]
+ 
+export const GPT_SECRET_KEY = process.env.REACT_APP_GPT_SECRET_KEY

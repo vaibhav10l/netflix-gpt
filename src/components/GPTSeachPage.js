@@ -5,12 +5,12 @@ import { NetFlix_bg_image } from '../utils/constant'
 
 const GPTSearchPage = () => {
   return (
-    <div className='bg-red-700'>
+    <div className=''>
       <div>
         
-      <img className='absolute -z-30' src={NetFlix_bg_image}/>
+      <img className='fixed -z-50' src={NetFlix_bg_image}/>
       </div>
-    <div className=' absolute w-full'>
+    <div className='w-full'>
     <GptSearchBar/>
     <GPTMovieSuggections/>
     </div>
