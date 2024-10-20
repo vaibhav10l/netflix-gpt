@@ -48,8 +48,8 @@ const Header = () => {
     });
   }, [])
   return (
-    <div className='absolute w-screen px-2 bg-gradient-to-b from-black z-20 flex justify-between'>
-      <img className='w-44 '
+    <div className='absolute w-screen px-2 bg-gradient-to-b from-black z-20 md:flex justify-between'>
+      <img className='w-44 mx-auto md:mx-0'
         src={Netflix_logo}
         alt='netflix-logo' />
 

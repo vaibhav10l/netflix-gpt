@@ -27,7 +27,7 @@ const GptSearchBar = () => {
     //   console.log("completion",completion)
 
     //For the time been let use a hardcoded movie String 
-    const movies = "Bhool Bhulaiyaa 2,Raaz,Bhoot,Stree,Murder"
+    const movies = "Don,Kalki,Raaz,Bhoot,Stree"
     const movieArray = movies.split(",")
     const fetchAllMoviesPromise = movieArray.map((movie) => getAllMovieDetails(movie))
     const fetchAllMovieData = await Promise.all(fetchAllMoviesPromise);
@@ -35,14 +35,14 @@ const GptSearchBar = () => {
 
   }
   return (
-    <div className=' pt-[10%] flex justify-center '>
-      <form className='w-1/2 bg-black grid grid-cols-12' onSubmit={(e) => e.preventDefault()}>
+    <div className=' pt-[40%] md:pt-[10%] flex  justify-center '>
+      <form className='w-full md:w-1/2 mx-2 bg-black grid grid-cols-12' onSubmit={(e) => e.preventDefault()}>
         <input
           className='m-2 p-2 col-span-9 rounded-lg'
           type='text'
           placeholder={lang[selectedLanguage].searchPlaceHolder}>
         </input>
-        <button className='bg-red-700 m-2 p-2 col-span-3 rounded-lg' onClick={onClickSearch}>
+        <button className='bg-red-700 m-2 p-2 col-span-3 rounded-lg' onClick={()=>onClickSearch()}>
           {lang[selectedLanguage].search}
         </button>
       </form>

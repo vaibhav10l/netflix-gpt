@@ -8,7 +8,7 @@ const GPTSearchPage = () => {
     <div className=''>
       <div>
         
-      <img className='fixed -z-50' src={NetFlix_bg_image}/>
+      <img className='fixed -z-50 h-screen w-full object-cover' src={NetFlix_bg_image}/>
       </div>
     <div className='w-full'>
     <GptSearchBar/>
